@@ -1,12 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from '../../redux/contactsSlice/ContactsSlice';
 import { getStateContacts, getStateFilter } from 'redux/selectors';
+import {
+  deleteContactThunk,
+  getContactsThunk,
+} from 'redux/contactsThunk/contactsThunk';
+import { useEffect } from 'react';
 
 export const Contacts = () => {
   const contacts = useSelector(getStateContacts);
   const filter = useSelector(getStateFilter);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
 
   const getFilteredContacts = () => {
     const normalizedFilter = filter.toLowerCase();
@@ -27,7 +35,7 @@ export const Contacts = () => {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => dispatch(deleteContact(contact.id))}
+              onClick={() => dispatch(deleteContactThunk(contact.id))}
             >
               DELETE
             </button>

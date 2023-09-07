@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from '../../redux/contactsSlice/ContactsSlice';
 import { getStateContacts } from 'redux/selectors';
+import { addContactThunk } from 'redux/contactsThunk/contactsThunk';
 
 export const Form = () => {
   const [contactInfo, setContactInfo] = useState({ name: '', number: '' });
@@ -32,7 +33,7 @@ export const Form = () => {
       return contacts;
     }
 
-    dispatch(addContacts({ ...contactInfo, id: nanoid() }));
+    dispatch(addContactThunk({ ...contactInfo, id: nanoid() }));
     setContactInfo({ name: '', number: '' });
   };
 
