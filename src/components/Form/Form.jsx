@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from '../../redux/contactsSlice/ContactsSlice';
 import { getStateContacts } from 'redux/selectors';
 import { addContactThunk } from 'redux/contactsThunk/contactsThunk';
 
